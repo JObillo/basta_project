@@ -1,46 +1,72 @@
-import React from "react";
-import ReactPlayer from "react-player";
+import { usePage } from "@inertiajs/react";
 
 type Song = {
+  id: number;
   song_name: string;
-  url: string;      // YouTube URL as a string
   lyric: string;
+  url: string;
+  cover_photo?: string;
 };
 
-type SongDetailProps = {
-  song: Song;
-};
+function getEmbedUrl(url: string) {
+  try {
+    const parsedUrl = new URL(url);
 
-export default function SongDetail({ song }: SongDetailProps) {
-  console.log("Song URL type:", typeof song.url);
-  console.log("Song URL value:", song.url);
+    let videoId = "";
+
+    if (parsedUrl.hostname.includes("youtube.com")) {
+      videoId = parsedUrl.searchParams.get("v") || "";
+      if (!videoId) {
+        const paths = parsedUrl.pathname.split("/");
+        const embedIndex = paths.indexOf("embed");
+        if (embedIndex !== -1 && paths.length > embedIndex + 1) {
+          videoId = paths[embedIndex + 1];
+        }
+      }
+    } else if (parsedUrl.hostname === "youtu.be") {
+      videoId = parsedUrl.pathname.slice(1);
+    }
+
+    if (videoId) {
+      return `https://www.youtube.com/embed/${videoId}`;
+    }
+
+    return url;
+  } catch (error) {
+    return url;
+  }
+}
+
+export default function SongDetail() {
+  const { props } = usePage<{ song: Song }>();
+  const song = props.song;
+  const embedUrl = getEmbedUrl(song.url);
 
   return (
-    <div style={{ maxWidth: 600, margin: "auto" }}>
-      <h1>{song.song_name}</h1>
+    <div className="p-6 max-w-3xl mx-auto text-center">
+      <h1 className="text-2xl font-bold mb-4">{song.song_name}</h1>
 
-      <ReactPlayer
-        url={song.url}
-        controls
-        width="100%"
-        height="360px"
-        onError={(e) => {
-          console.error("ReactPlayer failed to load video", e);
-          alert("Failed to load video. Please check the URL.");
-        }}
-      />
+      <div className="mb-6">
+        {/* Show the original and embed URLs visibly for debugging */}
+        <p><strong>Original URL:</strong> {song.url}</p>
+        <p><strong>Embed URL:</strong> {embedUrl}</p>
 
-      <h2>Lyrics</h2>
-      <pre
-        style={{
-          whiteSpace: "pre-wrap",
-          backgroundColor: "#f0f0f0",
-          padding: "1rem",
-          borderRadius: "8px",
-        }}
-      >
-        {song.lyric}
-      </pre>
+        <iframe
+          width="100%"
+          height="400"
+          src={embedUrl}
+          title={song.song_name}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          className="rounded shadow-lg border-4 border-purple-600"
+          frameBorder="0"
+        />
+      </div>
+
+      <div className="bg-white p-4 rounded shadow">
+        <h2 className="text-lg font-semibold mb-2">Lyrics</h2>
+        <pre className="whitespace-pre-wrap text-left">{song.lyric}</pre>
+      </div>
     </div>
   );
 }

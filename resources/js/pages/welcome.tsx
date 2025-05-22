@@ -42,27 +42,30 @@ export default function Welcome() {
     }
   }, [props.songs, props.categories, props.flashMessage]);
 
-  // Filter songs by category filter AND search term
+  // Filter songs by status (public), category filter AND search term
   const groupedSongs = useMemo(() => {
     const lowerSearch = searchTerm.toLowerCase();
 
-    // Filter by category filter first
+    // Step 1: Filter public songs only
+    const publicSongs = songs.filter((song) => song.status === "public");
+
+    // Step 2: Filter by category
     const filteredByCategory =
       searchFilter === "All"
-        ? songs
-        : songs.filter((song) =>
-            song.category?.category_name === searchFilter
+        ? publicSongs
+        : publicSongs.filter(
+            (song) => song.category?.category_name === searchFilter
           );
 
-    // Apply search term filter (pure search by song name and category name)
+    // Step 3: Filter by search term (song or category name)
     const filteredSongs = filteredByCategory.filter(
       (song) =>
         song.song_name.toLowerCase().includes(lowerSearch) ||
         song.category?.category_name.toLowerCase().includes(lowerSearch)
     );
 
+    // Group by category
     const groups: Record<string, Song[]> = {};
-
     category.forEach((cat) => {
       groups[cat.category_name] = [];
     });
@@ -144,7 +147,9 @@ export default function Welcome() {
 
                 return (
                   <div key={categoryName}>
-                    <h2 className="text-lg font-semibold mb-2">{categoryName}</h2>
+                    <h2 className="text-lg font-semibold mb-2">
+                      {categoryName}
+                    </h2>
 
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
                       {groupedSongs[categoryName]
@@ -159,7 +164,9 @@ export default function Welcome() {
                               className="block w-full"
                             >
                               <img
-                                src={song.cover_photo || "/placeholder-song.png"}
+                                src={
+                                  song.cover_photo || "/placeholder-song.png"
+                                }
                                 alt={song.song_name}
                                 className="w-65 h-65 object-cover rounded cursor-pointer hover:scale-[1.02]"
                               />
@@ -180,7 +187,9 @@ export default function Welcome() {
                 );
               })
           ) : (
-            <p className="text-center text-gray-500">no available song right now.</p>
+            <p className="text-center text-gray-500">
+              no available song right now.
+            </p>
           )}
         </div>
       </div>

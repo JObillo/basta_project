@@ -17,7 +17,7 @@ return new class extends Migration
             $table->longText('lyric')->nullable();
             $table->string('url')->comment('YouTube video URL');
             $table->string('cover_photo')->nullable(); 
-            $table->enum('status', ['public', 'private'])->default('private');
+            $table->enum('status', ['public', 'private'])->default('public');
             $table->timestamps();
 
             $table->unsignedBigInteger('category_id');
