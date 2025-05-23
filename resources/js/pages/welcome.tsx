@@ -90,9 +90,9 @@ export default function Welcome() {
   return (
     <>
       <Head title="PhilCST Library" />
-      <div className="flex flex-col min-h-screen bg-gray-100 text-gray-900 p-4 sm:p-6">
+      <div className="flex flex-col min-h-screen bg-dark text-white-900 p-4 sm:p-6">
         {/* Header */}
-        <header className="fixed top-0 left-0 z-50 w-full flex justify-between items-center px-6 py-4 bg-white shadow-md">
+        <header className="fixed top-0 left-0 z-50 w-full flex justify-between items-center px-6 py-4 shadow-md">
           <img src="philcstlogo.png" alt="Logo" className="h-10" />
           <div className="flex items-center gap-4">
             <Link
@@ -107,7 +107,7 @@ export default function Welcome() {
         {/* Welcome Message */}
         <div className="text-center mt-24">
           <h1 className="lilitaOneFont royalPurple text-2xl sm:text-3xl font-bold">
-            OBS The Great
+            Unbellevable Songs Hub
           </h1>
         </div>
 
@@ -157,7 +157,7 @@ export default function Welcome() {
                         .map((song) => (
                           <div
                             key={song.id}
-                            className="h-auto bg-white rounded-md border border-gray-300 shadow-sm p-2 flex flex-col items-center"
+                            className="h-auto  rounded-md border border-gray-300 shadow-sm p-2 flex flex-col items-center"
                           >
                             <Link
                               href={route("songs.show", { song: song.id })}
@@ -168,7 +168,7 @@ export default function Welcome() {
                                   song.cover_photo || "/placeholder-song.png"
                                 }
                                 alt={song.song_name}
-                                className="w-65 h-65 object-cover rounded cursor-pointer hover:scale-[1.02]"
+                                className="w-100 h-65 object-cover rounded cursor-pointer hover:scale-[1.02]"
                               />
                             </Link>
 

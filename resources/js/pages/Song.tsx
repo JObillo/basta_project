@@ -97,7 +97,7 @@ export default function Songs() {
       <Head title="Manage Songs" />
       <Toaster position="top-right" richColors />
 
-      <div className="flex flex-col gap-6 p-6 bg-white text-black shadow-lg rounded">
+      <div className="flex flex-col gap-6 p-6 bg-white text-black shadow-lg rounded ">
         <div className="flex flex-wrap gap-2 justify-between items-center mb-4">
           <div className="flex gap-2 items-center">
             <Input
@@ -214,17 +214,17 @@ export default function Songs() {
         </span>
         <div className="flex items-center gap-1">
           <button
-            className="px-3 py-1 border rounded hover:bg-gray-200 disabled:opacity-50 cursor-pointer"
+            className="px-3 py-1 border rounded bg-white hover:bg-gray-200 disabled:opacity-50 cursor-pointer"
             onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
             disabled={currentPage === 1}
           >
             Previous
           </button>
-          <span className="px-3 py-1 bg-purple-700 text-white rounded">
+          <span className="px-3 py-1 bg-white text-black rounded">
             {currentPage}
           </span>
           <button
-            className="px-3 py-1 border rounded hover:bg-gray-200 disabled:opacity-50 cursor-pointer"
+            className="px-3 py-1 border rounded bg-white hover:bg-gray-200 disabled:opacity-50 cursor-pointer"
             onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
             disabled={currentPage === totalPages}
           >

@@ -48,8 +48,8 @@ export default function SongDetail() {
 
       <div className="mb-6">
         {/* Show the original and embed URLs visibly for debugging */}
-        <p><strong>Original URL:</strong> {song.url}</p>
-        <p><strong>Embed URL:</strong> {embedUrl}</p>
+        {/* <p><strong>Original URL:</strong> {song.url}</p>
+        <p><strong>Embed URL:</strong> {embedUrl}</p> */}
 
         <iframe
           width="100%"
@@ -64,8 +64,8 @@ export default function SongDetail() {
       </div>
 
       <div className="bg-white p-4 rounded shadow">
-        <h2 className="text-lg font-semibold mb-2">Lyrics</h2>
-        <pre className="whitespace-pre-wrap text-left">{song.lyric}</pre>
+        <h2 className="text-lg font-semibold mb-2 text-black">Lyrics</h2>
+        <pre className="whitespace-pre-wrap text-left text-black">{song.lyric}</pre>
       </div>
     </div>
   );

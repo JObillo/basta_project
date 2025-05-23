@@ -136,54 +136,54 @@ export default function SongModal({
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
 
             <div className="mb-3">
-              <label htmlFor="song_name" className="block text-sm font-medium">Song Name</label>
+              <label htmlFor="song_name" className="block text-black font-medium">Song Name</label>
               <input
                 id="song_name"
                 type="text"
                 name="song_name"
                 value={formData.song_name}
                 onChange={handleChange}
-                className="w-full border rounded p-2"
+                className="w-full border rounded p-2 text-black"
                 required
                 placeholder="Enter song name"
               />
             </div>
 
             <div className="mb-3">
-              <label htmlFor="lyric" className="block text-sm font-medium">Lyric</label>
+              <label htmlFor="lyric" className="block text-black font-medium">Lyric</label>
               <textarea
                 id="lyric"
                 name="lyric"
                 value={formData.lyric}
                 onChange={handleChange}
-                className="w-full border rounded p-2"
+                className="w-full border rounded p-2 text-black"
                 placeholder="Enter lyrics"
               />
             </div>
 
             <div className="mb-3">
-              <label htmlFor="url" className="block text-sm font-medium">URL</label>
+              <label htmlFor="url" className="block text-black font-medium">URL</label>
               <input
                 id="url"
                 type="url"
                 name="url"
                 value={formData.url}
                 onChange={handleChange}
-                className="w-full border rounded p-2"
+                className="w-full border rounded p-2 text-black"
                 required
                 placeholder="YouTube video URL"
               />
             </div>
 
             <div className="mb-3">
-              <label htmlFor="cover_photo" className="block text-sm font-medium">Song Cover</label>
+              <label htmlFor="cover_photo" className="block text-sm font-medium text-black">Song Cover</label>
               <input
                 id="cover_photo"
                 type="file"
                 name="cover_photo"
                 onChange={handleFileChange}
                 accept="image/*"
-                className="w-full border rounded p-2"
+                className="w-full border rounded p-2 text-black"
               />
               {preview && (
                 <img
@@ -195,13 +195,13 @@ export default function SongModal({
             </div>
 
             <div className="mb-3">
-              <label htmlFor="category_id" className="block text-sm font-medium">Category</label>
+              <label htmlFor="category_id" className="block text-black font-medium">Category</label>
               <select
                 id="category_id"
                 name="category_id"
                 value={formData.category_id || ""}
                 onChange={handleChange}
-                className="w-full border rounded p-2"
+                className="w-full border rounded p-2 text-black"
               >
                 <option value="">Select Category</option>
                 {category.length > 0 ? (
@@ -217,13 +217,13 @@ export default function SongModal({
             </div>
 
             <div className="mb-3">
-              <label htmlFor="status" className="block text-sm font-medium">Status</label>
+              <label htmlFor="status" className="block text-sm font-medium text-black">Status</label>
               <select
                 id="status"
                 name="status"
                 value={formData.status}
                 onChange={handleChange}
-                className="w-full border rounded p-2"
+                className="w-full border rounded p-2 text-black"
                 required
               >
                 <option value="public">Public</option>

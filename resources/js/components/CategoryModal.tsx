@@ -96,13 +96,13 @@ export default function CategoryModal({ isOpen, closeModal, category }: Props) {
         <form onSubmit={handleSubmit} encType="multipart/form-data">
           {/* Category Name */}
           <div className="mb-3">
-            <label className="block text-sm font-medium">Category Name</label>
+            <label className="block text-black font-medium">Category Name</label>
             <input
               type="text"
               name="category_name"
               value={formData.category_name}
               onChange={handleChange} // Added handleChange here
-              className="w-full border rounded p-2"
+              className="w-full border rounded p-2 text-black"
               required
             />
           </div>
@@ -112,13 +112,13 @@ export default function CategoryModal({ isOpen, closeModal, category }: Props) {
             <button
               type="button"
               onClick={closeModal}
-              className="px-4 py-2 bg-gray-500 text-white rounded"
+              className="px-4 py-2 bg-gray-500 text-white rounded cursor-pointer"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="px-4 py-2 bg-blue-600 text-white rounded"
+              className="px-4 py-2 bg-blue-600 text-white rounded cursor-pointer"
             >
               {category ? "Update" : "Create"}
             </button>
